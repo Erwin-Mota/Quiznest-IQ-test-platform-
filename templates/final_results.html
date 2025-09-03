@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your IQ Results - Testify</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .left-column {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats-numbers {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .users-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .user-avatars {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: -10px;
+            border: 2px solid white;
+        }
+
+        .trust-section h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .trust-item {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .trust-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #667eea;
+            border-radius: 2px;
+        }
+
+        .trust-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .right-column {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-header {
+            background: #667eea;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .payment-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-highlight {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .countdown-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        .benefits-list {
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .benefit-item i {
+            color: #4CAF50;
+        }
+
+        .pricing-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .trial-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .discount-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .final-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .pay-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="results-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <div class="stats-header">
+                    <h2>12,847 Assessments Completed</h2>
+                    <p>106 Average Score</p>
+                </div>
+
+                <div class="stats-numbers">
+                    <div class="stat-item">
+                        <div class="stat-number">12,847</div>
+                        <div class="stat-label">Assessments</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">106</div>
+                        <div class="stat-label">Avg Score</div>
+                    </div>
+                </div>
+
+                <div class="users-section">
+                    <div class="user-avatars">
+                        <div class="avatar">AM</div>
+                        <div class="avatar">RJ</div>
+                        <div class="avatar">KL</div>
+                    </div>
+                    <span>+1,203</span>
+                </div>
+
+                <div class="trust-section">
+                    <h2>WHY YOU CAN TRUST TESTIFY</h2>
+                    
+                    <div class="trust-item">
+                        <h3>Scientifically Validated Assessment</h3>
+                        <p>Our cognitive evaluation is based on psychological research, validated against international intelligence scales, and questions are crafted to measure specific cognitive abilities.</p>
+                    </div>
+
+                    <div class="trust-item">
+                        <h3>Detailed Cognitive Analysis</h3>
+                        <p>You'll receive a comprehensive breakdown of mental capabilities across five key domains: logical reasoning, mathematical ability, spatial awareness, verbal comprehension, and pattern recognition.</p>
+                    </div>
+
+                    <div class="trust-item">
+                        <h3>Evidence-Based Insights</h3>
+                        <p>Our methodology incorporates cutting-edge cognitive science research to provide meaningful insights into intellectual strengths and areas for growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <div class="payment-header">
+                    <h1>Unlock Your Full Results for</h1>
+                    <div class="price-highlight">$1.29!</div>
+                    <p class="payment-subtitle">Special introductory offer - discover your complete cognitive profile</p>
+                    <button class="countdown-btn">
+                        <i class="fas fa-clock"></i>
+                        Limited time: 9:50
+                    </button>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Access your complete cognitive evaluation with detailed scoring</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>See how your intelligence compares to global standards</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Discover your mental strengths and development areas</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <span>Start your 7-day trial for only $1.29, then $9.29 every 4 weeks until cancelled</span>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <div class="trial-price">7-Day Trial: $1.29</div>
+                    <div class="discount-badge">
+                        <i class="fas fa-gift"></i>
+                        Special Discount Applied - You save 85%
+                    </div>
+                    <div class="original-price">$6.99</div>
+                    <div class="final-price">Total due today: $1.29</div>
+                    <button class="pay-button">
+                        <i class="fab fa-google-pay"></i>
+                        Buy with G Pay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        let timeLeft = 9 * 60 + 50; // 9 minutes 50 seconds
+        
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.querySelector('.countdown-btn').innerHTML = `
+                <i class="fas fa-clock"></i>
+                Limited time: ${timeString}
+            `;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.countdown-btn').innerHTML = 'Offer Expired';
+            }
+            
+            timeLeft--;
+        }
+        
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Handle payment
+        document.querySelector('.pay-button').addEventListener('click', function() {
+            // Simulate payment processing
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-check"></i> Payment Successful!';
+                this.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    window.location.href = '/results?unlocked=true';
+                }, 1500);
+            }, 2000);
+        });
+    </script>
+</body>
+</html> 
